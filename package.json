@@ -1,5 +1,5 @@
 {
-  "name": "krugleshock",
+  "name": "rizamamedow.github.io",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -22,5 +22,15 @@
     "eslint-config-next": "16.1.6",
     "tailwindcss": "^4",
     "typescript": "^5"
-  }
+  },
+  "description": "my website source code :)",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RizaMamedow/rizamamedow.github.io.git"
+  },
+  "author": "RizaMamedow",
+  "bugs": {
+    "url": "https://github.com/RizaMamedow/rizamamedow.github.io/issues"
+  },
+  "homepage": "https://github.com/RizaMamedow/rizamamedow.github.io#readme"
 }
