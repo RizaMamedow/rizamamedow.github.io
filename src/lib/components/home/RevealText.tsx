@@ -1,4 +1,4 @@
-import ScrollReveal from "../../bits/ScrollReveal";
+import ScrollReveal from "@/lib/bits/ScrollReveal";
 
 
 function RevealText({ text }: { text: string }) {

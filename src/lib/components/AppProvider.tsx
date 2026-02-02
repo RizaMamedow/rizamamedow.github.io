@@ -1,4 +1,4 @@
-import ClickSpark from "../bits/ClickSpark";
+import ClickSpark from "@/lib/bits/ClickSpark";
 
 function AppProvider({ children = null }: { children: React.ReactNode | null }) {
     return (

@@ -2,7 +2,7 @@
 
 import { usePathname } from "next/navigation";
 import Link from "next/link";
-import ShinyText from "../bits/ShinyText";
+import ShinyText from "@/lib/bits/ShinyText";
 import clsx from "clsx";
 
 type NavItemProps = {

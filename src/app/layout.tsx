@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { IBM_Plex_Mono } from "next/font/google";
 import "./globals.css";
 import AppProvider from "@/lib/components/AppProvider";
-import AppHeader from "../lib/components/AppHeader";
+import AppHeader from "@/lib/components/AppHeader";
 
 
 const ibm_plex_mono = IBM_Plex_Mono({
