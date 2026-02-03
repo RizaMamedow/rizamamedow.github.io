@@ -1,17 +1,33 @@
 import { supabase } from "../supabase/client";
 import type { Skill } from "../types/skill";
 
-const TABLE_NAME = "skills";
+class DataService<T extends Record<string, any>> {
+    protected tableName: string;
+    constructor(tableName: string) { this.tableName = tableName }
 
-export const SkillService = {
-    async getAll(): Promise<Skill[]> {
-        const { data, error } = await supabase.from(TABLE_NAME).select("*");
+    async getAll(): Promise<T[]> {
+        const { data, error } = await supabase.from(this.tableName).select("*");
 
         if (error) {
-            console.error("[SkillService.getAll]", error);
             throw error;
         }
 
         return data ?? [];
-    },
-};
+    }
+}
+
+export class SkillService extends DataService<Skill> {
+    static #instance: SkillService
+
+    public static get instance(): SkillService {
+        if (!SkillService.#instance) {
+            SkillService.#instance = new SkillService();
+        }
+
+        return SkillService.#instance;
+    }
+
+    constructor() {
+        super("skills")
+    }
+}

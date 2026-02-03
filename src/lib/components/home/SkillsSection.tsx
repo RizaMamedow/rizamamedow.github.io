@@ -17,7 +17,7 @@ function SkillsSection() {
     
     const loadSkills = async () => {
         try {
-            const data = await SkillService.getAll();
+            const data = await SkillService.instance.getAll();
             setSkills(data);
         } catch (err) {
             console.error(err);
