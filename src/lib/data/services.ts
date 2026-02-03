@@ -45,6 +45,6 @@ export class CertificateService extends DataService<Certificate> {
     }
 
     constructor() {
-        super("skills")
+        super("certificates")
     }
 }
