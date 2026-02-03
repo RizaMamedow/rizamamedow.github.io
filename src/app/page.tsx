@@ -2,6 +2,7 @@
 
 import HeroBanner from "@/lib/components/home/HeroBanner";
 import RevealText from "@/lib/components/home/RevealText";
+import SkillsSection from "@/lib/components/home/SkillsSection";
 
 const bannerText: string[] = [
     "Hi I'm Riza Mamedow",
@@ -16,6 +17,7 @@ export default function Home() {
         <main id="homepage">
             <HeroBanner messages={bannerText} />
             <RevealText text={revealText}/>
+            <SkillsSection />
         </main>
     );
 }
