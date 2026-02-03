@@ -2,7 +2,7 @@
 
 import { usePathname } from "next/navigation";
 import Link from "next/link";
-import ShinyText from "@/lib/bits/ShinyText";
+import ShinyText from "@/bits/ShinyText";
 import clsx from "clsx";
 
 type NavItemProps = {
@@ -75,7 +75,12 @@ function AppHeader() {
     );
 
     return (
-        <header id="app-header" className="w-full sticky top-0 z-1000">
+        <header id="app-header" className={clsx(
+            "w-full sticky top-0 z-1000",
+            "backdrop-blur-md",
+            "bg-black/01",
+            "transition-all duration-300"
+        )}>
             <div className="w-full flex justify-around items-center p-5 md:flex-row flex-col gap-4">
                 <div className="">
                     <Link href="/">

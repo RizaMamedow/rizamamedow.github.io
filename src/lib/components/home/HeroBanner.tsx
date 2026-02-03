@@ -1,4 +1,4 @@
-import TextType from "@/lib/bits/TextType";
+import TextType from "@/bits/TextType";
 
 
 
