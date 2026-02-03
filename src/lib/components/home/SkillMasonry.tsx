@@ -1,12 +1,7 @@
-import React, {
-    useLayoutEffect,
-    useMemo,
-    useRef,
-} from "react";
+import React, { useLayoutEffect, useMemo, useRef, useCallback } from "react";
 import { gsap } from "gsap";
 import { Skill } from "@/types/skill";
 import { useMeasure, useMedia } from "@/hooks";
-
 
 interface GridItem extends Skill {
     x: number;
@@ -25,7 +20,6 @@ interface MasonryProps {
     hoverScale?: number;
 }
 
-
 const SkillsMasonry: React.FC<MasonryProps> = ({
     items,
     ease = "power3.out",
@@ -38,26 +32,29 @@ const SkillsMasonry: React.FC<MasonryProps> = ({
     const columns = useMedia(
         ["(min-width:1400px)", "(min-width:1000px)", "(min-width:600px)"],
         [4, 3, 2],
-        1,
+        1
     );
 
     const [containerRef, { width }] = useMeasure<HTMLDivElement>();
     const hasMounted = useRef(false);
 
-    const getInitialPosition = (item: GridItem) => {
-        switch (animateFrom) {
-            case "top":
-                return { x: item.x, y: item.y - 80 };
-            case "left":
-                return { x: item.x - 80, y: item.y };
-            case "right":
-                return { x: item.x + 80, y: item.y };
-            case "center":
-                return { x: width / 2, y: item.y };
-            default:
-                return { x: item.x, y: item.y + 80 };
-        }
-    };
+    const getInitialPosition = useCallback(
+        (item: GridItem) => {
+            switch (animateFrom) {
+                case "top":
+                    return { x: item.x, y: item.y - 80 };
+                case "left":
+                    return { x: item.x - 80, y: item.y };
+                case "right":
+                    return { x: item.x + 80, y: item.y };
+                case "center":
+                    return { x: width / 2, y: item.y };
+                default:
+                    return { x: item.x, y: item.y + 80 };
+            }
+        },
+        [animateFrom, width]
+    );
 
     const grid = useMemo<GridItem[]>(() => {
         if (!width) return [];
@@ -82,42 +79,41 @@ const SkillsMasonry: React.FC<MasonryProps> = ({
     useLayoutEffect(() => {
         grid.forEach((item, index) => {
             const selector = `[data-key="${item.id}"]`;
-            const target = {
-                x: item.x,
-                y: item.y,
-                width: item.w,
-                height: item.h,
-            };
+            const target = { x: item.x, y: item.y, width: item.w, height: item.h };
 
             if (!hasMounted.current) {
                 const start = getInitialPosition(item);
 
                 gsap.fromTo(
                     selector,
-                    {
-                        opacity: 0,
-                        ...start,
-                    },
-                    {
-                        opacity: 1,
-                        ...target,
-                        duration,
-                        ease,
-                        delay: index * stagger,
-                    },
+                    { opacity: 0, ...start },
+                    { opacity: 1, ...target, duration, ease, delay: index * stagger }
                 );
             } else {
-                gsap.to(selector, {
-                    ...target,
-                    duration,
-                    ease,
-                    overwrite: "auto",
-                });
+                gsap.to(selector, { ...target, duration, ease, overwrite: "auto" });
             }
         });
 
         hasMounted.current = true;
-    }, [grid]);
+    }, [grid, duration, ease, stagger, getInitialPosition]);
+
+    const handleMouseEnter = useCallback(
+        (id: string) => {
+            if (scaleOnHover) {
+                gsap.to(`[data-key="${id}"]`, { scale: hoverScale, duration: 0.2 });
+            }
+        },
+        [scaleOnHover, hoverScale]
+    );
+
+    const handleMouseLeave = useCallback(
+        (id: string) => {
+            if (scaleOnHover) {
+                gsap.to(`[data-key="${id}"]`, { scale: 1, duration: 0.2 });
+            }
+        },
+        [scaleOnHover]
+    );
 
     return (
         <div ref={containerRef} className="relative w-full h-full">
@@ -127,26 +123,12 @@ const SkillsMasonry: React.FC<MasonryProps> = ({
                     data-key={skill.id}
                     className="absolute"
                     style={{ willChange: "transform, width, height, opacity" }}
-                    onMouseEnter={() =>
-                        scaleOnHover &&
-                        gsap.to(`[data-key="${skill.id}"]`, {
-                            scale: hoverScale,
-                            duration: 0.2,
-                        })
-                    }
-                    onMouseLeave={() =>
-                        scaleOnHover &&
-                        gsap.to(`[data-key="${skill.id}"]`, {
-                            scale: 1,
-                            duration: 0.2,
-                        })
-                    }
+                    onMouseEnter={() => handleMouseEnter(skill.id.toString())}
+                    onMouseLeave={() => handleMouseLeave(skill.id.toString())}
                 >
                     <div className="w-full h-full border bg-neutral-900 text-white flex items-center justify-between px-4">
                         <span className="font-medium">{skill.name}</span>
-                        <span className="text-xs opacity-60">
-                            {skill.category}
-                        </span>
+                        <span className="text-xs opacity-60">{skill.category}</span>
                     </div>
                 </div>
             ))}

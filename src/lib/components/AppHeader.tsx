@@ -10,7 +10,7 @@ type NavItemProps = {
     href: string;
 };
 
-let items: NavItemProps[] = [
+const items: NavItemProps[] = [
     {
         label: "home",
         href: "/",
@@ -25,54 +25,55 @@ let items: NavItemProps[] = [
     },
 ];
 
+
+const Brand = () => (
+    <ShinyText
+        text="rizamamedow"
+        textClassName="lg:text-2xl text-lg font-medium"
+        speed={2}
+        delay={0}
+        color="#bbbbbb"
+        shineColor="#ffffff"
+        spread={120}
+        direction="left"
+        yoyo={true}
+        pauseOnHover={false}
+        disabled={false}
+    />
+);
+
+const NavHashtag = ({ href, pathname }: { href: string, pathname: string }) => {
+    if (pathname === href) return <span className="font-montserrat text-primary">#</span>;
+    else return <span className="font-montserrat text-secondary">#</span>;
+};
+
+const Label = ({ item, pathname }: { item: NavItemProps, pathname: string  }) => {
+    const isActive = pathname === item.href;
+    const labelClassNames = clsx(
+        "text-base font-medium",
+        isActive ? "text-white hover:opacity-80" : "text-white hover:text-primary",
+    );
+
+    return <span className={labelClassNames}>{item.label}</span>;
+};
+
+const NavItem = ({ item, pathname }: { item: NavItemProps, pathname: string  }) => (
+    <Link
+        href={item.href}
+        className={clsx(
+            "text-base",
+            "font-medium",
+            "transition-all",
+            "duration-300",
+        )}
+    >
+        <NavHashtag href={item.href} pathname={pathname} />
+        <Label item={item} pathname={pathname} />
+    </Link>
+);
+
 function AppHeader() {
     const pathname = usePathname();
-
-    const Brand = () => (
-        <ShinyText
-            text="Riza-Mamedow"
-            textClassName="text-2xl font-bold"
-            speed={2}
-            delay={0}
-            color="#bbbbbb"
-            shineColor="#ffffff"
-            spread={120}
-            direction="left"
-            yoyo={true}
-            pauseOnHover={false}
-            disabled={false}
-        />
-    );
-
-    const Hashtag = ({ href }: { href: string }) => {
-        if (pathname === href) return <span className="text-primary">#</span>;
-        else return <span className="text-secondary">#</span>;
-    };
-
-    const Label = ({ item }: { item: NavItemProps }) => {
-        const isActive = pathname === item.href;
-        const labelClassNames = clsx(
-            "text-base font-medium",
-            isActive ? "text-white hover:opacity-80" : "text-white hover:text-primary",
-        );
-
-        return <span className={labelClassNames}>{item.label}</span>;
-    };
-
-    const NavItem = ({ item }: { item: NavItemProps }) => (
-        <Link
-            href={item.href}
-            className={clsx(
-                "text-base",
-                "font-medium",
-                "transition-all",
-                "duration-300",
-            )}
-        >
-            <Hashtag href={item.href} />
-            <Label item={item} />
-        </Link>
-    );
 
     return (
         <header id="app-header" className={clsx(
@@ -92,7 +93,7 @@ function AppHeader() {
                     <ul className="list-none m-0 p-0.75 flex gap-0.75">
                         {items.map((item) => (
                             <li key={item.href} className="px-2">
-                                <NavItem item={item} />
+                                <NavItem item={item} pathname={pathname} />
                             </li>
                         ))}
                     </ul>

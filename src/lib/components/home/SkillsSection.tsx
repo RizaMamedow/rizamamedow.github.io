@@ -1,18 +1,20 @@
 "use client";
 
-import React from "react";
+import { useEffect, useState } from "react";
 import { SkillService } from "@/data/services";
 import type { Skill } from "@/types/skill";
 import TextType from "@/bits/TextType";
 import ShinyText from "@/bits/ShinyText";
 import { Button } from "@/components/common/Button";
 import SkillsMasonry from "@/components/home/SkillMasonry";
-import LoadingText from "../common/LoadingText";
+import LoadingText from "@/components/common/LoadingText";
+import Hashtag from "../common/Hashtag";
 
 function SkillsSection() {
-    const [skills, setSkills] = React.useState<Skill[]>([]);
-    const [loading, setLoading] = React.useState(true);
-    const [error, setError] = React.useState<string | null>(null);
+    const [skills, setSkills] = useState<Skill[]>([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState<string | null>(null);
+    
     const loadSkills = async () => {
         try {
             const data = await SkillService.getAll();
@@ -31,7 +33,7 @@ function SkillsSection() {
         setError(null)
     }
 
-    React.useEffect(() => {
+    useEffect(() => {
         loadSkills();
     }, []);
 
@@ -73,24 +75,13 @@ function SkillsSection() {
 
     const SkillsScreen = () => (
         <div className="h-screen w-full max-w-6xl px-4">
-            <h2 className="text-left pb-10 text-5xl">
-                <ShinyText
-                    text="My skills:"
-                    textClassName="font-bold"
-                    speed={2}
-                    delay={0}
-                    color="#bbbbbb"
-                    shineColor="#ffffff"
-                    spread={120}
-                    direction="left"
-                    yoyo={true}
-                    pauseOnHover={false}
-                    disabled={false}
-                />
+            <h2 className="text-left pb-10 text-5xl leading-normal  font-extrabold">
+                <Hashtag className="text-primary font-montserrat" />
+                my_skills
             </h2>
             <SkillsMasonry
                 items={skills}
-                animateFrom="bottom"
+                animateFrom="center"
                 stagger={0.04}
                 scaleOnHover
                 hoverScale={0.96}

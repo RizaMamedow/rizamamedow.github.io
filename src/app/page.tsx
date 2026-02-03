@@ -3,7 +3,6 @@
 import HeroBanner from "@/components/home/HeroBanner";
 import RevealText from "@/components/home/RevealText";
 import SkillsSection from "@/components/home/SkillsSection";
-import Divider from "@/components/Divider";
 
 const bannerText: string[] = [
     "Hi I'm Riza Mamedow",

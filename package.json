@@ -21,16 +21,21 @@
     "three": "^0.182.0"
   },
   "devDependencies": {
+    "@eslint/js": "^9.39.2",
     "@tailwindcss/postcss": "^4.1.18",
     "@types/gsap": "^1.20.2",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "@types/three": "^0.182.0",
-    "eslint": "^9",
+    "eslint": "^9.39.2",
     "eslint-config-next": "16.1.6",
+    "eslint-plugin-react": "^7.37.5",
+    "globals": "^17.3.0",
+    "jiti": "^2.6.1",
     "tailwindcss": "^4.1.18",
-    "typescript": "^5"
+    "typescript": "^5",
+    "typescript-eslint": "^8.54.0"
   },
   "description": "my website source code :)",
   "repository": {

@@ -25,18 +25,6 @@ body {
   color: var(--color-foreground);
 }
 
-/* Logo wrapper: allow inline SVGs to use currentColor */
-.logo-wrapper {
-  color: var(--logo-color, inherit);
-  width: 100%;
-  height: 100%;
-  display: block;
-}
-
-.logo-wrapper svg {
-  width: 100%;
-  height: 100%;
-  display: block;
-  fill: currentColor;
-  stroke: currentColor;
+.font-montserrat {
+  font-family: var(--font-montserrat), sans-serif !important, 
 }

@@ -1,33 +1,37 @@
+import { useEffect, useLayoutEffect, useRef, useState, useCallback } from "react";
 
-/* =======================
-    Hooks
-======================= */
-
-import { useEffect, useLayoutEffect, useRef, useState } from "react";
 
 export const useMedia = (
     queries: string[],
     values: number[],
-    defaultValue: number,
+    defaultValue: number
 ): number => {
-    const get = () =>
-        values[queries.findIndex((q) => matchMedia(q).matches)] ?? defaultValue;
+    // Stable function to get the current value based on matching media query
+    const get = useCallback(() => {
+        return values[queries.findIndex((q) => matchMedia(q).matches)] ?? defaultValue;
+    }, [queries, values, defaultValue]);
 
     const [value, setValue] = useState(get);
 
     useEffect(() => {
         const handler = () => setValue(get);
-        queries.forEach((q) =>
-            matchMedia(q).addEventListener("change", handler),
-        );
-        return () =>
-            queries.forEach((q) =>
-                matchMedia(q).removeEventListener("change", handler),
-            );
-    }, [queries]);
+
+        // Add event listeners
+        queries.forEach((q) => {
+            matchMedia(q).addEventListener("change", handler);
+        });
+
+        // Cleanup
+        return () => {
+            queries.forEach((q) => {
+                matchMedia(q).removeEventListener("change", handler);
+            });
+        };
+    }, [get, queries]);
 
     return value;
 };
+
 
 export const useMeasure = <T extends HTMLElement>() => {
     const ref = useRef<T | null>(null);
@@ -42,6 +46,7 @@ export const useMeasure = <T extends HTMLElement>() => {
         });
 
         ro.observe(ref.current);
+
         return () => ro.disconnect();
     }, []);
 

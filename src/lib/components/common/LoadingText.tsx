@@ -1,7 +1,7 @@
 import TextType from "@/bits/TextType";
 
 const LoadingText = (
-    { className = "text-5xl font-extrabold" } 
+    { className = "md:text-6xl text-3xl font-extrabold" } 
     : { className?: string } 
 ) => (
     <h3 className={className}>

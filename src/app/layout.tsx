@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { IBM_Plex_Mono } from "next/font/google";
+import { IBM_Plex_Mono, Montserrat } from "next/font/google";
 import "./globals.css";
 import AppProvider from "@/components/AppProvider";
 import AppHeader from "@/components/AppHeader";
@@ -10,6 +10,11 @@ const ibm_plex_mono = IBM_Plex_Mono({
     subsets: ["latin", "cyrillic"],
     weight: ["100", "200", "300", "400", "500", "600", "700"]
 });
+
+const montserrat = Montserrat({
+    variable: "--font-montserrat",
+    subsets: ["latin", "cyrillic"],
+})
 
 export const metadata: Metadata = {
     title: "My empty Next.js App",
@@ -24,7 +29,7 @@ export default function RootLayout({
     return (
         <html lang="en">
             <body
-                className={`${ibm_plex_mono.variable} antialiased`}
+                className={`${ibm_plex_mono.variable} ${montserrat.variable} antialiased`}
             >
                 <AppProvider>
                     <AppHeader />
