@@ -75,7 +75,7 @@ function AppHeader() {
     );
 
     return (
-        <header id="app-header" className="w-full fixed z-1000">
+        <header id="app-header" className="w-full sticky top-0 z-1000">
             <div className="w-full flex justify-around items-center p-5 md:flex-row flex-col gap-4">
                 <div className="">
                     <Link href="/">
