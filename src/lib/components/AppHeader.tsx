@@ -4,6 +4,7 @@ import { usePathname } from "next/navigation";
 import Link from "next/link";
 import ShinyText from "@/bits/ShinyText";
 import clsx from "clsx";
+import Container from "./common/Container";
 
 type NavItemProps = {
     label: string;
@@ -82,9 +83,9 @@ function AppHeader() {
             "bg-background",
             "transition-all duration-300"
         )}>
-            <div className={clsx(
+            <Container className={clsx(
                 "w-full flex justify-between  items-center p-2 flex-col",
-                "lg:px-50 px-10 md:flex-row md:gap-4 md:p-5"
+                "md:flex-row md:gap-4 md:p-5"
             )}>
                 <div className="">
                     <Link href="/">
@@ -101,7 +102,7 @@ function AppHeader() {
                         ))}
                     </ul>
                 </div>
-            </div>
+            </Container>
         </header>
     );
 }

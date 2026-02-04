@@ -7,43 +7,9 @@ import ErrorView from "../common/ErrorView";
 import LoadingText from "../common/LoadingText";
 import Grid from "../common/Grid";
 import { GridItem } from "../common/GridItem";
-import clsx from "clsx";
+import Container from "../common/Container";
+import CertificateCard from "./CertificateCard";
 
-const CertificateCard = ({ item }: { item: Certificate }) => (
-    <a
-        href={item.url}
-        target="_blank"
-        rel="noopener noreferrer"
-        className={clsx(
-            "border rounded-lg overflow-hidden",
-            "hover:scale-105 hover:shadow-lg transition-all duration-300",
-            "cursor-pointer group block",
-        )}
-    >
-        <div className="aspect-video w-full overflow-hidden bg-gray-100">
-            <img
-                src={item.url}
-                alt={`${item.technology} certificate`}
-                className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
-            />
-        </div>
-
-        <div className="p-4 flex flex-col gap-2">
-            <h3 className="font-bold text-lg group-hover:text-primary transition-colors truncate">
-                {item.technology}
-            </h3>
-            <div className="flex justify-between items-center text-sm">
-                <span className="text-gray-600">{item.source}</span>
-                <span className="text-xs text-gray-500">
-                    {new Date(item.date).toLocaleDateString("en-US", {
-                        month: "short",
-                        year: "numeric",
-                    })}
-                </span>
-            </div>
-        </div>
-    </a>
-);
 
 function CertificatesScreen() {
     const [certificates, setCertificates] = useState<Certificate[]>([]);
@@ -67,7 +33,7 @@ function CertificatesScreen() {
     }, []);
 
     const ScreenContent = ({ items }: { items: Certificate[] }) => (
-        <div className="lg:px-50 px-10 w-full h-full">
+        <Container className="w-full h-full">
             <div className="mb-3">
                 <h2 className="text-4xl font-bold">
                     <Slash className="text-primary" />
@@ -95,7 +61,7 @@ function CertificatesScreen() {
                     );
                 })}
             </Grid>
-        </div>
+        </Container>
     );
 
     const LoadingScreen = () => (

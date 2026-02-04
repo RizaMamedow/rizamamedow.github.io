@@ -9,6 +9,7 @@ import ErrorView from "@/components/common/ErrorView";
 import Grid from "../common/Grid";
 import { GridItem } from "../common/GridItem";
 import clsx from "clsx";
+import Container from "../common/Container";
 
 
 const LoadingSkills = () => (
@@ -18,7 +19,7 @@ const LoadingSkills = () => (
 );
 
 const SkillsScreen = ({ items }: { items: Skill[] }) => (
-    <div className="h-screen w-full max-w-6xl px-4">
+    <Container className="h-screen w-full">
         <h2 className="text-left pb-5 text-5xl leading-normal  font-extrabold">
             <Hashtag className="text-primary font-montserrat" />
             my_skills
@@ -35,7 +36,7 @@ const SkillsScreen = ({ items }: { items: Skill[] }) => (
                         key={item.id}
                     >
                         <div className={clsx(
-                            "border p-4 flex justify-between items-center", 
+                            "border p-3 flex justify-between items-center", 
                             "hover:scale-105"
                         )}>
                             
@@ -46,7 +47,7 @@ const SkillsScreen = ({ items }: { items: Skill[] }) => (
                 )
             })}
         </Grid>
-    </div>
+    </Container>
 )
 
 function SkillsSection() {

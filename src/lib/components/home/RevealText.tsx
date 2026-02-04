@@ -1,10 +1,11 @@
 import ScrollReveal from "@/bits/ScrollReveal";
+import Container from "../common/Container";
 
 
 function RevealText({ text }: { text: string }) {
     return (
         <section id="reveal-text" className="w-full md:pt-10 h-max flex justify-center">
-            <div className="w-4/5 leading-relaxed mb-3">
+            <Container className="leading-relaxed mb-3">
                 <ScrollReveal
                     baseOpacity={0.1}
                     enableBlur
@@ -12,7 +13,7 @@ function RevealText({ text }: { text: string }) {
                     blurStrength={10}
                     children={text}
                 />
-            </div>
+            </Container>
         </section>
     );
 }
