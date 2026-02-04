@@ -3,12 +3,51 @@
 import { useEffect, useState } from "react";
 import { SkillService } from "@/data/services";
 import type { Skill } from "@/types/skill";
-import TextType from "@/bits/TextType";
-import ShinyText from "@/bits/ShinyText";
-import { Button } from "@/components/common/Button";
-import SkillsMasonry from "@/components/home/SkillMasonry";
 import LoadingText from "@/components/common/LoadingText";
-import Hashtag from "../common/Hashtag";
+import Hashtag from "@/components/common/Hashtag";
+import ErrorView from "@/components/common/ErrorView";
+import Grid from "../common/Grid";
+import { GridItem } from "../common/GridItem";
+import clsx from "clsx";
+
+
+const LoadingSkills = () => (
+    <div className="h-screen flex justify-center items-center">
+        <LoadingText/>
+    </div>
+);
+
+const SkillsScreen = ({ items }: { items: Skill[] }) => (
+    <div className="h-screen w-full max-w-6xl px-4">
+        <h2 className="text-left pb-5 text-5xl leading-normal  font-extrabold">
+            <Hashtag className="text-primary font-montserrat" />
+            my_skills
+        </h2>
+        <Grid 
+            cols={{ default: 1, sm: 2, lg: 3, xl: 4 }} 
+            gap={4}
+            className=""
+        >
+            {items.map((item, index) => {
+                return (
+                    <GridItem
+                        index={index}
+                        key={item.id}
+                    >
+                        <div className={clsx(
+                            "border p-4 flex justify-between items-center", 
+                            "hover:scale-105"
+                        )}>
+                            
+                            <span className="font-bold">{item.name}</span>
+                            <span className="text-gray-400 text-xs">{item.category}</span>
+                        </div>
+                    </GridItem>
+                )
+            })}
+        </Grid>
+    </div>
+)
 
 function SkillsSection() {
     const [skills, setSkills] = useState<Skill[]>([]);
@@ -37,66 +76,18 @@ function SkillsSection() {
         loadSkills();
     }, []);
 
-    const LoadingSkills = () => (
-        <div className="h-screen flex justify-center items-center">
-            <LoadingText/>
-        </div>
-    );
-
-    const ErrorScreen = ({ error }: { error: string }) => (
-        <div className="h-screen flex justify-center items-center">
-            <div className="w-50 flex flex-col gap-5 justify-between items-center">
-                <div className="w-100 text-center">
-                    <h3 className="text-2xl text-red-500">
-                        <span className="font-bold mr-2">{"Error >"}</span>
-                        <TextType
-                            text={[error]}
-                            typingSpeed={75}
-                            pauseDuration={1000}
-                            showCursor
-                            cursorCharacter="_"
-                            deletingSpeed={40}
-                            cursorBlinkDuration={0.3}
-                            loop={false}
-                        />
-                    </h3>
-                </div>
-                <Button
-                    onClick={() => {
-                        clearAllStates()
-                        loadSkills()
-                    }}
-                >
-                    You can try again!
-                </Button>
-            </div>
-        </div>
-    );
-
-    const SkillsScreen = () => (
-        <div className="h-screen w-full max-w-6xl px-4">
-            <h2 className="text-left pb-10 text-5xl leading-normal  font-extrabold">
-                <Hashtag className="text-primary font-montserrat" />
-                my_skills
-            </h2>
-            <SkillsMasonry
-                items={skills}
-                animateFrom="center"
-                stagger={0.04}
-                scaleOnHover
-                hoverScale={0.96}
-            />
-        </div>
-    )
-
+    
     return (
         <section
             id="skill-section"
             className="flex flex-col justify-center items-center md:pt-10"
         >
             {loading ? <LoadingSkills /> 
-                : error ? <ErrorScreen error={error} /> 
-                    : skills ? <SkillsScreen /> 
+                : error ? <ErrorView error={error} onClick={() => {
+                    clearAllStates()
+                    loadSkills()
+                }} /> 
+                    : skills ? <SkillsScreen items={skills} /> 
                         : null }
         </section>
     );

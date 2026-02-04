@@ -4,30 +4,34 @@ import { useEffect, useLayoutEffect, useRef, useState, useCallback } from "react
 export const useMedia = (
     queries: string[],
     values: number[],
-    defaultValue: number
+    defaultValue: number,
 ): number => {
     // Stable function to get the current value based on matching media query
     const get = useCallback(() => {
+        // Проверка на клиентскую среду
+        if (typeof window === 'undefined') {
+            return defaultValue;
+        }
         return values[queries.findIndex((q) => matchMedia(q).matches)] ?? defaultValue;
     }, [queries, values, defaultValue]);
 
-    const [value, setValue] = useState(get);
+    const [value, setValue] = useState(defaultValue); // Инициализируем defaultValue
 
     useEffect(() => {
-        const handler = () => setValue(get);
+        // Устанавливаем правильное значение после монтирования на клиенте
+        setValue(get());
 
-        // Add event listeners
-        queries.forEach((q) => {
-            matchMedia(q).addEventListener("change", handler);
-        });
-
-        // Cleanup
-        return () => {
-            queries.forEach((q) => {
-                matchMedia(q).removeEventListener("change", handler);
-            });
-        };
-    }, [get, queries]);
+        const handler = () => setValue(get());
+        
+        queries.forEach((q) =>
+            matchMedia(q).addEventListener("change", handler),
+        );
+        
+        return () =>
+            queries.forEach((q) =>
+                matchMedia(q).removeEventListener("change", handler),
+            );
+    }, [queries, get]);
 
     return value;
 };

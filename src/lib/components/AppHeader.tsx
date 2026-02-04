@@ -21,7 +21,7 @@ const items: NavItemProps[] = [
     },
     {
         label: "certificates",
-        href: "/certs",
+        href: "/certificates",
     },
 ];
 
@@ -79,10 +79,13 @@ function AppHeader() {
         <header id="app-header" className={clsx(
             "w-full sticky top-0 z-1000",
             "backdrop-blur-md",
-            "bg-black/01",
+            "bg-background",
             "transition-all duration-300"
         )}>
-            <div className="w-full flex justify-around items-center p-5 md:flex-row flex-col gap-4">
+            <div className={clsx(
+                "w-full flex justify-between  items-center p-2 flex-col",
+                "lg:px-50 px-10 md:flex-row md:gap-4 md:p-5"
+            )}>
                 <div className="">
                     <Link href="/">
                         <Brand />
