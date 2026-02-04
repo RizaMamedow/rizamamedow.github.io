@@ -12,8 +12,8 @@ const CertificateCard = ({ item }: { item: Certificate }) => {
             target="_blank"
             rel="noopener noreferrer"
             className={clsx(
-                "border rounded-lg overflow-hidden",
-                "hover:scale-105 hover:shadow-lg transition-all duration-300",
+                "border overflow-hidden",
+                "hover:scale-105 hover:shadow-lg",
                 "cursor-pointer group block",
             )}
         >
@@ -47,7 +47,7 @@ const CertificateCard = ({ item }: { item: Certificate }) => {
                     src={item.url}
                     alt={`${item.technology} certificate`}
                     className={clsx(
-                        "w-full h-full object-cover group-hover:scale-110 transition-transform duration-300",
+                        "w-full h-full object-cover group-hover:scale-110 ",
                         isLoading && "opacity-0",
                     )}
                     onLoad={() => setIsLoading(false)}
@@ -59,7 +59,7 @@ const CertificateCard = ({ item }: { item: Certificate }) => {
             </div>
 
             <div className="p-4 flex flex-col gap-2">
-                <h3 className="font-bold text-lg group-hover:text-primary transition-colors truncate">
+                <h3 className="font-bold text-lg group-hover:text-primary truncate">
                     {item.technology}
                 </h3>
                 <div className="flex justify-between items-center text-sm">
