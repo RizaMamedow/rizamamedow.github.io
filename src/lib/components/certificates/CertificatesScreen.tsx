@@ -28,6 +28,12 @@ function CertificatesScreen() {
         }
     };
 
+    const clearAll = () => {
+        setCertificates([])
+        setLoading(true)
+        setError(null)
+    }
+
     useEffect(() => {
         loadSkills();
     }, []);
@@ -74,7 +80,10 @@ function CertificatesScreen() {
             {loading ? (
                 <LoadingScreen />
             ) : error ? (
-                <ErrorView error={error} />
+                <ErrorView error={error} onClick={() => {
+                    clearAll()
+                    loadSkills()
+                }} />
             ) : certificates ? (
                 <ScreenContent items={certificates} />
             ) : null}
