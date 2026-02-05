@@ -1,6 +1,6 @@
 import clsx from "clsx";
-import { useState, useEffect } from "react";
-import { Certificate } from "../../types/certificate";
+import { useState, useEffect, useCallback } from "react";
+import { Certificate } from "@/types/certificate";
 import Image from "next/image";
 
 const CertificateCard = ({ item }: { item: Certificate }) => {
@@ -8,7 +8,7 @@ const CertificateCard = ({ item }: { item: Certificate }) => {
     const [hasError, setHasError] = useState(false);
     const [isModalOpen, setIsModalOpen] = useState(false);
     
-    const disableScroll = () => {
+    const disableScroll = useCallback(() => {
         if (isModalOpen) {
             document.body.style.overflow = 'hidden';
         } else {
@@ -18,11 +18,12 @@ const CertificateCard = ({ item }: { item: Certificate }) => {
         return () => {
             document.body.style.overflow = 'unset';
         };
-    }
-
-    useEffect(() => {
-        disableScroll()
     }, [isModalOpen]);
+
+    
+    useEffect(() => {
+        return disableScroll();
+    }, [disableScroll]);
 
     return (
         <>

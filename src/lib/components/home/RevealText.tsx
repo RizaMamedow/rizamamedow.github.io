@@ -1,5 +1,5 @@
 import ScrollReveal from "@/bits/ScrollReveal";
-import Container from "../common/Container";
+import Container from "@/components/common/Container";
 
 
 function RevealText({ text }: { text: string }) {
@@ -11,8 +11,9 @@ function RevealText({ text }: { text: string }) {
                     enableBlur
                     baseRotation={3}
                     blurStrength={10}
-                    children={text}
-                />
+                >
+                    {text}
+                </ScrollReveal>
             </Container>
         </section>
     );

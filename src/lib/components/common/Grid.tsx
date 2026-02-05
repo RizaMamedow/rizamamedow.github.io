@@ -1,4 +1,4 @@
-import { useMedia } from "../../hooks";
+import { useMedia } from "@/hooks";
 
 interface GridProps {
     children?: React.ReactNode | null;

@@ -6,10 +6,10 @@ import type { Skill } from "@/types/skill";
 import LoadingText from "@/components/common/LoadingText";
 import Hashtag from "@/components/common/Hashtag";
 import ErrorView from "@/components/common/ErrorView";
-import Grid from "../common/Grid";
-import { GridItem } from "../common/GridItem";
+import Grid from "@/components/common/Grid";
+import { GridItem } from "@/components/common/GridItem";
 import clsx from "clsx";
-import Container from "../common/Container";
+import Container from "@/components/common/Container";
 
 
 const LoadingSkills = () => (

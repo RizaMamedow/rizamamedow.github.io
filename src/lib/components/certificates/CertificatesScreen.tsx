@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react";
-import { Certificate } from "../../types/certificate";
-import { CertificateRepository } from "../../data/repositories";
-import Slash from "../common/Slash";
-import TextType from "../../bits/TextType";
-import ErrorView from "../common/ErrorView";
-import LoadingText from "../common/LoadingText";
-import Grid from "../common/Grid";
-import { GridItem } from "../common/GridItem";
-import Container from "../common/Container";
-import CertificateCard from "./CertificateCard";
+import { Certificate } from "@/types/certificate";
+import { CertificateRepository } from "@/data/repositories";
+import Slash from "@/components/common/Slash";
+import TextType from "@/bits/TextType";
+import ErrorView from "@/components/common/ErrorView";
+import LoadingText from "@/components/common/LoadingText";
+import Grid from "@/components/common/Grid";
+import { GridItem } from "@/components/common/GridItem";
+import Container from "@/components/common/Container";
+import CertificateCard from "@/components/certificates/CertificateCard";
 
 
 function CertificatesScreen() {

@@ -1,5 +1,5 @@
 import { MouseEventHandler } from "react";
-import TextType from "../../bits/TextType";
+import TextType from "@/bits/TextType";
 import Button from "./Button";
 
 function ErrorView({

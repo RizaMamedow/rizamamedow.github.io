@@ -1,8 +1,8 @@
-import { supabase } from "../supabase/client";
-import { Certificate } from "../types/certificate";
-import type { Skill } from "../types/skill";
+import { supabase } from "@/supabase/client";
+import { Certificate } from "@/types/certificate";
+import type { Skill } from "@/types/skill";
 
-class RepositoryBase<T extends Record<string, any>> {
+class RepositoryBase<T extends Record<string, unknown>> {
     protected tableName: string;
     constructor(tableName: string) { this.tableName = tableName }
 
