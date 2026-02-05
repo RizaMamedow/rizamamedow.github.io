@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { SkillService } from "@/data/services";
+import { SkillRepository } from "@/src/lib/data/repositories";
 import type { Skill } from "@/types/skill";
 import LoadingText from "@/components/common/LoadingText";
 import Hashtag from "@/components/common/Hashtag";
@@ -57,7 +57,7 @@ function SkillsSection() {
     
     const loadSkills = async () => {
         try {
-            const data = await SkillService.instance.getAll();
+            const data = await SkillRepository.instance.getAll();
             setSkills(data);
         } catch (err) {
             console.error(err);

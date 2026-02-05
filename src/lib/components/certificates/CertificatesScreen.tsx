@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Certificate } from "../../types/certificate";
-import { CertificateService } from "../../data/services";
+import { CertificateRepository } from "../../data/repositories";
 import Slash from "../common/Slash";
 import TextType from "../../bits/TextType";
 import ErrorView from "../common/ErrorView";
@@ -18,7 +18,7 @@ function CertificatesScreen() {
 
     const loadSkills = async () => {
         try {
-            const data = await CertificateService.instance.getAll();
+            const data = await CertificateRepository.instance.getAll();
             setCertificates(data);
         } catch (err) {
             console.error(err);
