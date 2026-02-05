@@ -49,9 +49,8 @@ function CertificatesScreen() {
             </div>
 
             <Grid
-                cols={{ default: 1, sm: 2, lg: 2, xl: 3 }}
+                cols={{ default: 1, sm: 2, lg: 3, xl: 3 }}
                 gap={4}
-                className=""
             >
                 {items.map((item, index) => {
                     return (
