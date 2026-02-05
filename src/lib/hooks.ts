@@ -6,19 +6,16 @@ export const useMedia = (
     values: number[],
     defaultValue: number,
 ): number => {
-    // Stable function to get the current value based on matching media query
     const get = useCallback(() => {
-        // Проверка на клиентскую среду
         if (typeof window === 'undefined') {
             return defaultValue;
         }
         return values[queries.findIndex((q) => matchMedia(q).matches)] ?? defaultValue;
     }, [queries, values, defaultValue]);
 
-    const [value, setValue] = useState(defaultValue); // Инициализируем defaultValue
+    const [value, setValue] = useState(defaultValue);
 
     useEffect(() => {
-        // Устанавливаем правильное значение после монтирования на клиенте
         setValue(get());
 
         const handler = () => setValue(get());
