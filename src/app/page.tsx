@@ -14,7 +14,7 @@ const revealText: string = "\"The path of trial and mistakes gave me invaluable 
 
 export default function Home() {
     return (
-        <main id="homepage">
+        <main id="home_page">
             <HeroBanner messages={bannerText} />
             <hr className="my-2" />
             <RevealText text={revealText}/>
