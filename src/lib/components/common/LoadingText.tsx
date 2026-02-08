@@ -1,4 +1,5 @@
 import TextType from "@/bits/TextType";
+import { shuffle } from "@/src/lib/utils";
 
 const LoadingText = (
     { className = "md:text-6xl text-3xl font-extrabold" } 
@@ -6,14 +7,16 @@ const LoadingText = (
 ) => (
     <h3 className={className}>
         <TextType
-            text={[
-                "Loading...",
-                "One moment",
-                "Wait a minute",
-                "Just a second",
-                "Hold on",
-                "Give me a moment",
-            ]}
+            text={shuffle(
+                [
+                    "Loading...",
+                    "One moment",
+                    "Wait a minute",
+                    "Just a second",
+                    "Hold on",
+                    "Give me a moment",
+                ]
+            )}
             typingSpeed={75}
             pauseDuration={1000}
             showCursor

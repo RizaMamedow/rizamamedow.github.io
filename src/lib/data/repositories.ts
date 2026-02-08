@@ -6,13 +6,20 @@ class RepositoryBase<T extends Record<string, unknown>> {
     protected tableName: string;
     constructor(tableName: string) { this.tableName = tableName }
 
-    async getAll(): Promise<T[]> {
-        const { data, error } = await supabase.from(this.tableName).select("*");
+    async getAll(limit?: number): Promise<T[]> {
+        let query = supabase
+            .from(this.tableName)
+            .select("*");
+
+        if (limit !== undefined) {
+            query = query.limit(limit)
+        }
+
+        const { data, error } = await query
 
         if (error) {
             throw error;
         }
-
         return data ?? [];
     }
 }

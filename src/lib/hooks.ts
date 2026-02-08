@@ -1,4 +1,4 @@
-import { useLayoutEffect, useRef, useState, useSyncExternalStore } from "react";
+import { useEffect, useLayoutEffect, useRef, useState, useSyncExternalStore } from "react";
 
 export const useMedia = (
     queries: string[],
@@ -46,3 +46,42 @@ export const useMeasure = <T extends HTMLElement>() => {
 
     return [ref, size] as const;
 };
+
+
+interface UseRepositoryOptions<T> {
+    fetchFn: () => Promise<T>;
+    onError?: (error: Error) => void;
+}
+
+export function useRepository<T>({ fetchFn, onError }: UseRepositoryOptions<T>) {
+    const [data, setData] = useState<T | null>(null);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState<string | null>(null);
+
+    const loadData = async () => {
+        try {
+            setLoading(true);
+            setError(null);
+            const result = await fetchFn();
+            setData(result);
+        } catch (err) {
+            console.error(err);
+            const errorMessage = err instanceof Error ? err.message : "Failed to load data";
+            setError(errorMessage);
+            onError?.(err as Error);
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    const retry = () => {
+        setData(null);
+        loadData();
+    };
+
+    useEffect(() => {
+        loadData();
+    }, []);
+
+    return { data, loading, error, retry };
+}

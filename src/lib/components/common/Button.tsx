@@ -5,7 +5,7 @@ export type ButtonProps = {
     className?: string
     containerClassName?: string
     disabled?: boolean
-    onClick: MouseEventHandler<HTMLButtonElement>
+    onClick?: () => unknown
     children?: React.ReactNode | null
     removeDefaultClassName?: boolean
     removeHoverDefaultClassName?: boolean

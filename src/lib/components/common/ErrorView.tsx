@@ -10,7 +10,7 @@ function ErrorView({
     onClick?: MouseEventHandler<HTMLButtonElement> | null;
 }) {
     return (
-        <div className="h-screen flex justify-center items-center">
+        <div className="mt-30 flex justify-center items-center">
             <div className="w-50 flex flex-col gap-5 justify-between items-center">
                 <div className="w-100 text-center">
                     <h3 className="text-2xl text-red-500">
