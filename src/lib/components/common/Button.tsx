@@ -1,5 +1,4 @@
 import clsx from "clsx"
-import { MouseEventHandler } from "react"
 
 export type ButtonProps = {
     className?: string

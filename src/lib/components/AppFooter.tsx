@@ -1,6 +1,5 @@
 "use client";
 
-import { usePathname } from "next/navigation";
 import clsx from "clsx";
 import Container from "./common/Container";
 

@@ -1,4 +1,3 @@
-import { MouseEventHandler } from "react";
 import TextType from "@/bits/TextType";
 import Button from "./Button";
 
@@ -7,7 +6,7 @@ function ErrorView({
     onClick = null,
 }: {
     error: string;
-    onClick?: MouseEventHandler<HTMLButtonElement> | null;
+    onClick?: (() => void) | null;
 }) {
     return (
         <div className="mt-30 flex justify-center items-center">

@@ -81,7 +81,7 @@ export function useRepository<T>({ fetchFn, onError }: UseRepositoryOptions<T>) 
 
     useEffect(() => {
         loadData();
-    }, []);
+    });
 
     return { data, loading, error, retry };
 }
