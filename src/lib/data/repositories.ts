@@ -1,3 +1,4 @@
+import { Contact } from "@/src/lib/types/contact";
 import { supabase } from "@/supabase/client";
 import { Certificate } from "@/types/certificate";
 import type { Skill } from "@/types/skill";
@@ -53,5 +54,21 @@ export class CertificateRepository extends RepositoryBase<Certificate> {
 
     constructor() {
         super("certificates")
+    }
+}
+
+export class ContactsRepository extends RepositoryBase<Contact> {
+    static #instance: ContactsRepository
+
+    public static get instance(): ContactsRepository {
+        if (!ContactsRepository.#instance) {
+            ContactsRepository.#instance = new ContactsRepository();
+        }
+
+        return ContactsRepository.#instance;
+    }
+
+    constructor() {
+        super("contacts")
     }
 }
