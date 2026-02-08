@@ -3,6 +3,7 @@ import { IBM_Plex_Mono, Montserrat } from "next/font/google";
 import "./globals.css";
 import AppProvider from "@/components/AppProvider";
 import AppHeader from "@/components/AppHeader";
+import AppFooter from "@/src/lib/components/AppFooter";
 
 
 const ibm_plex_mono = IBM_Plex_Mono({
@@ -34,6 +35,7 @@ export default function RootLayout({
                 <AppProvider>
                     <AppHeader />
                     {children}
+                    <AppFooter />
                 </AppProvider>
                 
             </body>
