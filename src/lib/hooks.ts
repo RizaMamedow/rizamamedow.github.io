@@ -83,7 +83,8 @@ export function useRepository<T>({ fetchFn, onError }: UseRepositoryOptions<T>) 
 
     useEffect(() => {
         loadData();
-    }, [loadData]);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
     return { data, loading, error, retry };
 }
