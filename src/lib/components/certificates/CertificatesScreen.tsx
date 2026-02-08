@@ -18,33 +18,32 @@ function CertificatesScreen() {
 
     return (
         <div className="flex justify-center items-center mt-4">
-            <DataWrapper
-                data={certificates}
-                loading={loading}
-                error={error}
-                onRetry={retry}
-                loadingComponent={
-                    <div className="min-h-screen flex justify-center items-center">
-                        <LoadingText />
-                    </div>
-                }
-            >
-                {(items) => (
-                    <Container className="w-full h-full">
-                        <div className="mb-3">
-                            <h2 className="text-4xl font-bold">
-                                <Slash className="text-primary" />
-                                certificates
-                            </h2>
-                            <TextType
-                                text={[
-                                    "this my certificates :)",
-                                    "on click you can go to image source",
-                                ]}
-                                className="ml-5"
-                            />
+            <Container className="w-full h-full">
+                <div className="mb-3">
+                    <h1 className="text-4xl font-bold">
+                        <Slash className="text-primary" />
+                        certificates
+                    </h1>
+                    <TextType
+                        text={[
+                            "this my certificates :)",
+                            "on click you can go to image source",
+                        ]}
+                        className="ml-5"
+                    />
+                </div>
+                <DataWrapper
+                    data={certificates}
+                    loading={loading}
+                    error={error}
+                    onRetry={retry}
+                    loadingComponent={
+                        <div className="min-h-screen flex justify-center items-center">
+                            <LoadingText />
                         </div>
-
+                    }
+                >
+                    {(items) => (
                         <Grid cols={{ default: 1, sm: 2, lg: 3, xl: 3 }} gap={4}>
                             {items.map((item, index) => (
                                 <GridItem index={index} key={item.id}>
@@ -52,9 +51,9 @@ function CertificatesScreen() {
                                 </GridItem>
                             ))}
                         </Grid>
-                    </Container>
-                )}
-            </DataWrapper>
+                    )}
+                </DataWrapper>
+            </Container>
         </div>
     );
 }
