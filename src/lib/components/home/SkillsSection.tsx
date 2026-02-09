@@ -9,11 +9,13 @@ import Container from "@/components/common/Container";
 import { DataWrapper } from "@/components/common/DataWrapper";
 import clsx from "clsx";
 import { useRepository } from "@/src/lib/hooks";
+import { useAppStore } from "@/src/lib/data/stores/app.store";
 
 function SkillsSection() {
-    const { data: skills, loading, error, retry } = useRepository({
-        fetchFn: () => SkillRepository.instance.getAll()
-    });
+    const data = useAppStore((s) => s.skills.data);
+    const loading = useAppStore((s) => s.skills.loading);
+    const error = useAppStore((s) => s.skills.error);
+    const fetch = useAppStore((s) => s.skills.fetch);
 
     return (
         <section
@@ -27,10 +29,10 @@ function SkillsSection() {
                 </h2>
 
                 <DataWrapper
-                    data={skills}
+                    data={data}
                     loading={loading}
                     error={error}
-                    onRetry={retry}
+                    fetch={fetch}
                 >
                     {(items) => (
                         <Grid cols={{ default: 1, sm: 2, lg: 3, xl: 4 }} gap={4}>

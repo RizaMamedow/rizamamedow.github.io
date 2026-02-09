@@ -1,6 +1,5 @@
 "use client";
 
-import { CertificateRepository } from "@/data/repositories";
 import Slash from "@/components/common/Slash";
 import TextType from "@/bits/TextType";
 import Grid from "@/components/common/Grid";
@@ -8,13 +7,14 @@ import { GridItem } from "@/components/common/GridItem";
 import Container from "@/components/common/Container";
 import CertificateCard from "@/components/certificates/CertificateCard";
 import { DataWrapper } from "@/components/common/DataWrapper";
-import { useRepository } from "@/src/lib/hooks";
 import LoadingText from "@/src/lib/components/common/LoadingText";
+import { useAppStore } from "@/src/lib/data/stores/app.store";
 
 function CertificatesScreen() {
-    const { data: certificates, loading, error, retry } = useRepository({
-        fetchFn: () => CertificateRepository.instance.getAll()
-    });
+    const data = useAppStore((s) => s.certificates.data);
+    const loading = useAppStore((s) => s.certificates.loading);
+    const error = useAppStore((s) => s.certificates.error);
+    const fetch = useAppStore((s) => s.certificates.fetch);
 
     return (
         <div className="flex justify-center items-center mt-4">
@@ -33,10 +33,10 @@ function CertificatesScreen() {
                     />
                 </div>
                 <DataWrapper
-                    data={certificates}
+                    data={data}
                     loading={loading}
                     error={error}
-                    onRetry={retry}
+                    fetch={fetch}
                     loadingComponent={
                         <div className="min-h-screen flex justify-center items-center">
                             <LoadingText />
@@ -44,7 +44,10 @@ function CertificatesScreen() {
                     }
                 >
                     {(items) => (
-                        <Grid cols={{ default: 1, sm: 2, lg: 3, xl: 3 }} gap={4}>
+                        <Grid
+                            cols={{ default: 1, sm: 2, lg: 3, xl: 3 }}
+                            gap={4}
+                        >
                             {items.map((item, index) => (
                                 <GridItem index={index} key={item.id}>
                                     <CertificateCard item={item} />

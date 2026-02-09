@@ -1,4 +1,3 @@
-// CertificatesSector.tsx
 "use client";
 
 import CertificateCard from "@/src/lib/components/certificates/CertificateCard";
@@ -8,14 +7,20 @@ import Grid from "@/src/lib/components/common/Grid";
 import { GridItem } from "@/src/lib/components/common/GridItem";
 import Hashtag from "@/src/lib/components/common/Hashtag";
 import { DataWrapper } from "@/src/lib/components/common/DataWrapper";
-import { CertificateRepository } from "@/src/lib/data/repositories";
 import Link from "next/link";
-import { useRepository } from "@/src/lib/hooks";
+import { useAppStore } from "@/src/lib/data/stores/app.store";
+import { useMemo } from "react";
 
 function CertificatesSection() {
-    const { data: certificates, loading, error, retry } = useRepository({
-        fetchFn: () => CertificateRepository.instance.getAll(3)
-    });
+    const data = useAppStore((s) => s.certificates.data);
+    const loading = useAppStore((s) => s.certificates.loading);
+    const error = useAppStore((s) => s.certificates.error);
+    const fetch = useAppStore((s) => s.certificates.fetch);
+
+    const preview = useMemo(
+        () => data?.slice(0, 3) ?? null,
+        [data]
+    );
 
     return (
         <section id="certificates">
@@ -31,10 +36,10 @@ function CertificatesSection() {
                     </div>
 
                     <DataWrapper
-                        data={certificates}
+                        data={preview}
                         loading={loading}
                         error={error}
-                        onRetry={retry}
+                        fetch={fetch}
                     >
                         {(items) => (
                             <>
