@@ -12,10 +12,8 @@ import { useRepository } from "@/src/lib/hooks";
 import { useAppStore } from "@/src/lib/data/stores/app.store";
 
 function SkillsSection() {
-    const data = useAppStore((s) => s.skills.data);
-    const loading = useAppStore((s) => s.skills.loading);
-    const error = useAppStore((s) => s.skills.error);
-    const fetch = useAppStore((s) => s.skills.fetch);
+    const store = useAppStore((s) => s.skills );
+    const { data, loading, fetch, error } = store;
 
     return (
         <section

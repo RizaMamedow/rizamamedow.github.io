@@ -11,10 +11,8 @@ import LoadingText from "@/src/lib/components/common/LoadingText";
 import { useAppStore } from "@/src/lib/data/stores/app.store";
 
 function CertificatesScreen() {
-    const data = useAppStore((s) => s.certificates.data);
-    const loading = useAppStore((s) => s.certificates.loading);
-    const error = useAppStore((s) => s.certificates.error);
-    const fetch = useAppStore((s) => s.certificates.fetch);
+    const store = useAppStore((s) => s.certificates );
+    const { data, loading, fetch, error } = store;
 
     return (
         <div className="flex justify-center items-center mt-4">

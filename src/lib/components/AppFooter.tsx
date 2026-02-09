@@ -10,10 +10,8 @@ import ErrorText from "@/src/lib/components/common/ErrorText";
 
 
 function AppFooter() {
-    const data = useAppStore((s) => s.contacts.data);
-    const loading = useAppStore((s) => s.contacts.loading);
-    const error = useAppStore((s) => s.contacts.error);
-    const fetch = useAppStore((s) => s.contacts.fetch);
+    const store = useAppStore((s) => s.contacts )
+    const { data, loading, fetch, error } = store
 
     return (
         <footer id="app-footer" className={clsx(
