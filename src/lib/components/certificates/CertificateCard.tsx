@@ -2,6 +2,7 @@ import clsx from "clsx";
 import { useState, useEffect, useCallback } from "react";
 import { Certificate } from "@/types/certificate";
 import Image from "next/image";
+import { XIcon } from "lucide-react";
 
 const CertificateCard = ({ item }: { item: Certificate }) => {
     const [isLoading, setIsLoading] = useState(true);
@@ -66,6 +67,7 @@ const CertificateCard = ({ item }: { item: Certificate }) => {
                         }}
                         width="500"
                         height="500"
+                        unoptimized
                     />
                 </div>
 
@@ -91,16 +93,17 @@ const CertificateCard = ({ item }: { item: Certificate }) => {
                     onClick={() => setIsModalOpen(false)}
                 >
                     <button
-                        className="absolute top-4 right-4 text-white hover:text-gray-300 transition-colors z-10"
+                        className="absolute top-4 right-4 text-white hover:cursor-pointer hover:text-red-400 z-10"
                         onClick={() => setIsModalOpen(false)}
                     >
-                        <span className="text-5xl ml-10">×</span>
+                        <XIcon />
                     </button>
                     <Image
                         src={item.url}
                         alt={`${item.technology} certificate`}
                         className="max-w-full max-h-full object-contain"
                         onClick={(e) => e.stopPropagation()}
+                        unoptimized
                         height="1024"
                         width="1024"
                     />
