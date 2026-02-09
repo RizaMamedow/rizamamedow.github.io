@@ -17,7 +17,7 @@ const items: NavItemProps[] = [
         href: "/",
     },
     {
-        label: "about",
+        label: "about_me",
         href: "/about",
     },
     {
