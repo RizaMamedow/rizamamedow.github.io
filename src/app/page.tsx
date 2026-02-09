@@ -17,11 +17,9 @@ export default function Home() {
     return (
         <main id="home_page">
             <HeroBanner messages={bannerText} />
-            <hr className="my-2" />
             <RevealText text={revealText}/>
-            <hr className="my-2" />
             <SkillsSection />
-            <br />
+            <br className="p-5" />
             <CertificatesSection/>
         </main>
     );

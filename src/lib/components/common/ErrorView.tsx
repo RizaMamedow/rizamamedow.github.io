@@ -9,9 +9,9 @@ function ErrorView({
     onClick?: (() => void) | null;
 }) {
     return (
-        <div className="mt-30 flex justify-center items-center">
-            <div className="w-50 flex flex-col gap-5 justify-between items-center">
-                <div className="w-100 text-center">
+        <div className="my-30 flex justify-center items-center">
+            <div className="flex flex-col gap-5 justify-between items-center">
+                <div className="text-center">
                     <h3 className="text-2xl text-red-500">
                         <span className="font-bold mr-2">{"Error >"}</span>
                         <TextType

@@ -8,14 +8,13 @@ function ContactItem({ data }: { data: Contact }) {
     return (
         <Link 
             href={data.url}
-            className="flex items-center gap-3 p-4 rounded-lg border border-gray-200 hover:border-gray-300 hover:bg-gray-50 transition-all group"
+            className="flex items-center p-3 border hover:border-primary hover:bg-primary/30 group"
             target="_blank"
             rel="noopener noreferrer"
         >
-            <div className="flex items-center justify-center w-10 h-10 rounded-full bg-gray-100 group-hover:bg-gray-200 transition-colors">
-                <IconComponent className="w-5 h-5 text-gray-700" />
+            <div className="flex items-center justify-center">
+                <IconComponent className="text-white group-hover:text-primary"/>
             </div>
-            <span className="font-medium text-gray-900">{data.name}</span>
         </Link>
     )
 }

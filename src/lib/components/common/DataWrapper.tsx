@@ -7,8 +7,9 @@ interface DataWrapperProps<T> {
     loading: boolean;
     error: string | null;
     fetch: () => void;
-    children: (data: T) => React.ReactNode;
+    children?: (data: T) => React.ReactNode;
     loadingComponent?: React.ReactNode;
+    errorComponent?: (error: string) => React.ReactNode;
 }
 
 export function DataWrapper<T>({
@@ -18,6 +19,7 @@ export function DataWrapper<T>({
     fetch,
     children,
     loadingComponent,
+    errorComponent,
 }: DataWrapperProps<T>) {
     useEffect(() => {
         if (!data && !loading && !error) {
@@ -36,10 +38,12 @@ export function DataWrapper<T>({
     }
 
     if (error) {
-        return <ErrorView error={error} onClick={fetch} />;
+        return errorComponent?.(error) ?? (
+            <ErrorView error={error} onClick={fetch} />
+        )
     }
 
-    if (!data) {
+    if (!data || !children) {
         return null;
     }
 
