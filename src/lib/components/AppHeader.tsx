@@ -5,26 +5,7 @@ import Link from "next/link";
 import ShinyText from "@/bits/ShinyText";
 import clsx from "clsx";
 import Container from "./common/Container";
-
-type NavItemProps = {
-    label: string;
-    href: string;
-};
-
-const items: NavItemProps[] = [
-    {
-        label: "home",
-        href: "/",
-    },
-    {
-        label: "about_me",
-        href: "/about",
-    },
-    {
-        label: "certificates",
-        href: "/certificates",
-    },
-];
+import { Route, routes } from "@/src/lib/routes";
 
 
 const Brand = () => (
@@ -48,8 +29,8 @@ const NavHashtag = ({ href, pathname }: { href: string, pathname: string }) => {
     else return <span className="font-montserrat text-secondary">#</span>;
 };
 
-const Label = ({ item, pathname }: { item: NavItemProps, pathname: string  }) => {
-    const isActive = pathname === item.href;
+const Label = ({ item, pathname }: { item: Route, pathname: string  }) => {
+    const isActive = pathname === item.url;
     const labelClassNames = clsx(
         "text-base font-medium",
         isActive ? "text-white hover:opacity-80" : "text-white hover:text-primary",
@@ -58,9 +39,9 @@ const Label = ({ item, pathname }: { item: NavItemProps, pathname: string  }) =>
     return <span className={labelClassNames}>{item.label}</span>;
 };
 
-const NavItem = ({ item, pathname }: { item: NavItemProps, pathname: string  }) => (
+const NavItem = ({ item, pathname }: { item: Route, pathname: string  }) => (
     <Link
-        href={item.href}
+        href={item.url}
         className={clsx(
             "text-base",
             "font-medium",
@@ -68,7 +49,7 @@ const NavItem = ({ item, pathname }: { item: NavItemProps, pathname: string  }) 
             "duration-300",
         )}
     >
-        <NavHashtag href={item.href} pathname={pathname} />
+        <NavHashtag href={item.url} pathname={pathname} />
         <Label item={item} pathname={pathname} />
     </Link>
 );
@@ -95,8 +76,8 @@ function AppHeader() {
 
                 <div className="">
                     <ul className="list-none m-0 p-0.75 flex gap-0.75">
-                        {items.map((item) => (
-                            <li key={item.href} className="px-2">
+                        {routes.map((item) => (
+                            <li key={item.url} className="px-2">
                                 <NavItem item={item} pathname={pathname} />
                             </li>
                         ))}
