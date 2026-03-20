@@ -55,7 +55,7 @@ function AppFooter() {
     return (
         <footer id="app-footer" className={clsx("border-t mt-20")}>
             <Container className={clsx("w-full", "md:gap-4 gap-3 md:p-5")}>
-                <div className="flex justify-between items-center">
+                <div className="flex justify-between items-center md:gap-0 gap-3 md:flex-row flex-col">
                     <div>
                         <ContactsView {...store} />
                     </div>
