@@ -1,36 +1,123 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🧑‍💻 rizamamedow.github.io
 
-## Getting Started
+> Личный сайт-портфолио с информацией обо мне.
 
-First, run the development server:
+[![Deploy](https://img.shields.io/badge/deployed-GitHub%20Pages-181717?logo=github)](https://rizamamedow.github.io)
+[![Next.js](https://img.shields.io/badge/Next.js-App%20Router-black?logo=next.js)](https://nextjs.org/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5-blue?logo=typescript)](https://www.typescriptlang.org/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)
+
+---
+
+## 📌 О проекте
+
+Этот сайт — моя цифровая визитка. Здесь собрано всё обо мне.
+
+**Live:** [rizamamedow.github.io](https://rizamamedow.github.io)
+
+---
+
+## 🚀 Стек
+
+| Слой | Технологии |
+|---|---|
+| Framework | [Next.js 16](https://nextjs.org/) (App Router) |
+| Язык | TypeScript 5 |
+| База данных | [Supabase](https://supabase.com/) |
+| Стейт-менеджмент | [Zustand 5](https://zustand-demo.pmnd.rs/) |
+| Анимации | [GSAP 3](https://gsap.com/), [Motion](https://motion.dev/) |
+| 3D / WebGL | [Three.js](https://threejs.org/), [OGL](https://github.com/oframe/ogl) |
+| Стили | [Tailwind CSS v4](https://tailwindcss.com/) |
+| Иконки | [Lucide React](https://lucide.dev/) |
+| Деплой | GitHub Pages |
+
+---
+
+## ⚙️ Установка и запуск
+
+### Требования
+
+- Node.js >= 18
+- npm / yarn / pnpm
+
+### Клонирование репозитория
+
+```bash
+git clone https://github.com/RizaMamedow/rizamamedow.github.io.git
+cd rizamamedow.github.io
+```
+
+### Установка зависимостей
+
+```bash
+npm install
+```
+
+### Переменные окружения
+
+Создайте файл `.env.local` в корне проекта и заполните переменные:
+
+```dotenv
+# Базовый URL вашего API
+NEXT_PUBLIC_API_BASE_URL=
+
+# Публичный ключ для доступа к API
+NEXT_PUBLIC_API_PUBLIC_KEY=
+```
+
+### Запуск в режиме разработки
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Откройте [http://localhost:3000](http://localhost:3000) в браузере.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Сборка для продакшна
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run build
+npm run start
+```
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+## 📁 Структура проекта
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```
+src/
+├── app/                    # Next.js App Router
+│   ├── page.tsx            # Главная страница
+│   ├── about/page.tsx      # Страница "Обо мне"
+│   ├── certificates/       # Страница сертификатов
+│   ├── layout.tsx          # Корневой layout
+│   └── not-found.tsx       # 404
+└── lib/
+    ├── api/                # Клиент, эндпоинты, сервис
+    ├── bits/               # Анимационные компоненты (ASCII, Spark, Reveal...)
+    ├── components/         # UI-компоненты (Header, Footer, Cards...)
+    ├── data/               # Zustand store + слайсы
+    ├── hooks.ts            # Кастомные хуки
+    ├── routes.ts           # Роуты приложения
+    ├── types/              # TypeScript-типы
+    └── utils.ts            # Утилиты
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
+## ✨ Фичи
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- Анимированные компоненты — `ScrollReveal`, `ClickSpark`, `TextType`, `ShinyText`, `ASCIIText`
+- Глобальный стейт через Zustand (сертификаты, навыки, контакты)
+- Типизированный API-слой с валидацией через Zod
+- Тема оформления через CSS-переменные (`theme.css`)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+
+## 📄 Лицензия
+
+Распространяется под лицензией [MIT](./LICENSE).
+
+---
+
+<p align="center">Сделано с ❤️ by <a href="https://github.com/RizaMamedow">Riza Mamedow</a></p>
