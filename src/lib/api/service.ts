@@ -14,23 +14,4 @@ export default class ApiServiceBase<T> {
         });
         return res.data.data;
     }
-
-    async getById(id: string): Promise<T> {
-        const { data } = await apiClient.get(`${this.endpoint}/${id}`);
-        return data;
-    }
-
-    async create(payload: Partial<T>): Promise<T> {
-        const { data } = await apiClient.post(this.endpoint, payload);
-        return data;
-    }
-
-    async update(id: string, payload: Partial<T>): Promise<T> {
-        const { data } = await apiClient.put(`${this.endpoint}/${id}`, payload);
-        return data;
-    }
-
-    async delete(id: string): Promise<void> {
-        await apiClient.delete(`${this.endpoint}/${id}`);
-    }
 }
