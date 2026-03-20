@@ -20,8 +20,10 @@ const montserrat = Montserrat({
 export const metadata: Metadata = {
     title: "home | rizamamedow",
     description: "hi it's website about me :)",
+    verification: {
+        google: "IJjtoSgR__DgXXnx9sTkj5Xy-R0g4I04FPplYvTUwS4",
+    },
 };
-
 export default function RootLayout({
     children,
 }: Readonly<{
@@ -29,12 +31,6 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="en">
-            <Head>
-                <meta
-                    name="google-site-verification"
-                    content="IJjtoSgR__DgXXnx9sTkj5Xy-R0g4I04FPplYvTUwS4"
-                />
-            </Head>
             <body
                 className={`${ibm_plex_mono.variable} ${montserrat.variable} antialiased`}
             >
