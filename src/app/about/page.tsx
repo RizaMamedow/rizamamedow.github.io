@@ -1,9 +1,13 @@
-"use client";
-
 import ASCIIText from "@/src/lib/bits/ASCIIText";
 import Container from "@/src/lib/components/common/Container";
 import Slash from "@/src/lib/components/common/Slash";
 import clsx from "clsx";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+    title: "about | rizamamedow",
+    description: "it's page with information about me.",
+};
 
 export default function About() {
     const paragraphDefaultClasses: string = "text-lg font-medium mt-10 mb-4 ";
@@ -20,9 +24,9 @@ export default function About() {
                     {/* TEXT — 50% */}
                     <div className="w-full md:w-1/2">
                         <p className={clsx(paragraphDefaultClasses)}>
-                            Hi! My name is Riza, and I'm a software developer
-                            passionate about creating clean, efficient, and
-                            user-friendly applications.
+                            Hi! My name is Riza, and I{"\'"}m a software
+                            developer passionate about creating clean,
+                            efficient, and user-friendly applications.
                         </p>
                         <p className={clsx(paragraphDefaultClasses)}>
                             I work with modern technologies, love learning new
